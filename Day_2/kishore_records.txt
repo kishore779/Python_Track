@@ -1,0 +1,6 @@
+Student Name {name} | Average_marks + {avg:.2f} | Grade + {grade}
+Subject 0 : 95
+Subject 1 : 95
+Subject 2 : 95
+Subject 3 : 95
+Subject 4 : 95
