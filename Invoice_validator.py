@@ -6,9 +6,9 @@ class InvoiceController:
 
     def validate(self):
         if not self.invoice.invoice_id:
-            return "Name is required"
+            return "Id is required"
         if not self.invoice.customer_name:
-            return "Id is mandatory"
+            return "Name is mandatory"
         if not self.invoice.items:
             return "No Items"
         if self.invoice.total_amount < 0:
