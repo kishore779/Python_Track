@@ -1,19 +1,30 @@
-cnt=1
-def limit_calls(func):
-    global cnt 
-    cnt =1 
+import functools
+
+def my_decorator(func):
+    @functools.wraps(func) # Preserves the original function's name and metadata
     def wrapper(*args, **kwargs):
-        if(cnt < 3):
-            cnt = cnt + 1
-            return func(*args, **kwargs)
-        else:
-            print("[BLOCKED] limit has reached buy premium")
+        # 1. Do something BEFORE the original function runs
+        print("Something is happening BEFORE the function is called.")
+        
+        # 2. Execute the original function and capture its output
+        result = func(*args, **kwargs)
+        
+        # 3. Do something AFTER the original function runs
+        print("Something is happening AFTER the function is called.")
+        
+        # 4. Return the result so the original function's output isn't lost
+        return result
+        
     return wrapper
 
-@limit_calls
-def send_api_request(name : str):
-    print(f"Sent for {name}")
+# --- How to Use It ---
 
-send_api_request("john")
-send_api_request("rony")
-send_api_request("")
+@my_decorator
+def greet(name):
+    print(f"Hello, {name}!")
+    return f"Greeted {name}"
+
+# Call the decorated function
+response = greet("Alice")
+print(f"Function Return Value: {response}")
+
