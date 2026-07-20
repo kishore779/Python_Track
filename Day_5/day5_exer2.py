@@ -18,8 +18,11 @@ class BankAccount:
         It adds the amount to your balance
         """
 
-        if amount < 0:
+        if amount < 500:
             raise ValueError("Minimum 500 required for deposit")
+        
+        if amount < 0:
+            raise ValueError("Amount should be in positive")
         
         self.balance += amount
         print("Deposit Successful")
@@ -29,8 +32,12 @@ class BankAccount:
         """
         It withdraw amount from your back account
         """
+
         if amount > self.balance:
             raise InsufficientBalanceError("Your balance is lesser than required amount")
+        
+        if amount <= 0:
+            raise ValueError("Amount should be in positive")
         
         self.balance -= amount
         print(f"Withdraw Sucessfull : Your balance is {self.balance}")
@@ -40,14 +47,17 @@ class BankAccount:
         """
         It Transfers money from one account to another
         """
+
         if amount > self.balance:
             raise InsufficientBalanceError("Your balance is lesser than required amount")
+        if amount < 0:
+            raise InsufficientBalanceError("Balance must be in positive")
         if not other_account:
             raise AccountHolderNotFound("Mentioned account is not found")
         
         self.balance -= amount
         other_account.balance += amount
-        print(f"Tranfer completed to the Account : {other_account}")
+        print(f"Tranfer completed to the Account : {other_account.owner}")
 
 class Service:
 
@@ -59,8 +69,13 @@ class Service:
         """
         It creates a new Account by the name and amount
         """
+
         if any (account.owner == name for account in self.accounts):
             raise ValueError(f"Account already exists in the name : {name}")
+        
+        if balance < 0:
+            raise ValueError("Balance should be in positive")
+        
         account = BankAccount(name, balance)
         self.accounts.append(account)
 
@@ -69,10 +84,11 @@ class Service:
         """
         It finds the Account that already exists in database
         """
+        
         for account in self.accounts:
             if account.owner == name:
                 return account
-        return f"Account Not Found in the name {name}"
+        raise AccountHolderNotFound("Account not found")
 
 
 service = Service()
