@@ -1,5 +1,6 @@
 from Invoice import Invoice
 
+
 class InvoiceController:
     def __init__(self, invoice):
         self.invoice = invoice

@@ -1,0 +1,14 @@
+INFO:__main__:Successfully parsed for the data kishore
+ERROR:__main__:Age cannot be divisible by 0
+INFO:__main__:Successfully parsed for the data kishore
+ERROR:__main__:Age cannot be divisible by 0
+INFO:__main__:Successfully parsed for the data kishore
+ERROR:__main__:Age cannot be divisible by 0
+INFO:__main__:Successfully parsed for the data kishore
+ERROR:__main__:Age cannot be divisible by 0
+ERROR:__main__:Type Conversion failes could not convert string to float: 'ki'
+Traceback (most recent call last):
+  File "/home/kishore/Downloads/python_practice/training_2.py", line 14, in calculate_user_average_age
+    age = float(data["age"])
+ValueError: could not convert string to float: 'ki'
+ERROR:__main__:Age cannot be divisible by 0

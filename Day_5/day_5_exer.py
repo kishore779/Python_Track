@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Student:
-    name : str
-    marks : int
+    name: str
+    marks: int
 
     def grade(self):
         if self.marks >= 90:
@@ -18,11 +19,9 @@ class Student:
 
 class StudentService:
     def __init__(self):
-         self.students : list[Student] = []
-    
+        self.students: list[Student] = []
 
-    def add_student(self, name : str, marks : int) -> None:
-
+    def add_student(self, name: str, marks: int) -> None:
         """
         It adds the students in the student record
         """
@@ -30,24 +29,21 @@ class StudentService:
 
         if any(student.name == name for student in self.students):
             raise ValueError(f"Student: {name} already in the database")
-        
+
         self.students.append(Student(name, marks))
-            
 
-    def validate_records(self, name : str, marks : int):
-            
-            """
-            It checks the name and marks valid to be added
-            """
-            if 0 > marks or marks > 100 :
-                raise ValueError("Marks should between 0 and 100")
-            if not name:
-                raise ValueError("Name must be not Null")
-            
-            return True
+    def validate_records(self, name: str, marks: int):
+        """
+        It checks the name and marks valid to be added
+        """
+        if 0 > marks or marks > 100:
+            raise ValueError("Marks should between 0 and 100")
+        if not name:
+            raise ValueError("Name must be not Null")
 
-    def get_grade(self, name : str) -> str:
+        return True
 
+    def get_grade(self, name: str) -> str:
         """
         It prints the grade of the required student
         """
